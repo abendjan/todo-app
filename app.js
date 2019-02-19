@@ -43,12 +43,37 @@ let todoList = {
     this.displayTodos();
   },
 
+
+  deleteTodo: function(index) {
+    this.todos.splice(index, 1);
+  },
+
   toggleCompleted: function(index) {
     //this.todos[index].completed = (this.todos[index].completed === false) ? true : false;
     this.todos[index].completed = !this.todos[index].completed;
   },
 
-  deleteTodo: function(index) {
-    this.todos.splice(index, 1);
+  toggleAll: function() {
+    let completeCounter = 0;
+
+    for (let i = 0; i < this.todos.length; i++) {
+
+      if (this.todos[i].completed === true) {
+        completeCounter += 1;
+      }
+    }
+    // Make everything completed
+    for (let i = 0; i < this.todos.length; i++) {
+
+      if (completeCounter < this.todos.length) {
+        this.todos[i].completed = true;
+      }
+
+      //Make everything not completed when everything was completed
+      if (completeCounter === this.todos.length) {
+        this.todos[i].completed = false;
+      }
+    }
   },
+
 };
